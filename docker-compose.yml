@@ -23,6 +23,8 @@ services:
     container_name: selenium-experiment
     depends_on:
       - selenium-hub
+    volumes:
+      - ./reports:/usr/projects/selenium-experiment/target/surefire-reports
     environment:
       - HUB_HOST=selenium-hub
       - HUB_PORT=4444
