@@ -22,6 +22,9 @@ docker-compose up
 To run the tests in IDE use the below configuration
 <img width="1032" alt="Screenshot 2022-05-13 at 9 41 01 AM" src="https://user-images.githubusercontent.com/105441387/168209705-92765da8-7d75-491f-bbaa-6474e0e2b43a.png">
 
+Test reports for grid run can be found under reports directory
+
+<img width="422" alt="Screenshot 2022-05-13 at 10 13 55 AM" src="https://user-images.githubusercontent.com/105441387/168212704-306e2600-c206-472d-a1c9-67e575b9d8ba.png">
 
 ### Frameworks used
 - Selenium 4 for UI automation
