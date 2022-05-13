@@ -19,6 +19,7 @@ public abstract class Page {
 
     public static int universalWaitTimeInSeconds = 10;
     public abstract void initialize();
+
     protected void clickElement(WebElement element){
         element.click();
     }
@@ -31,7 +32,7 @@ public abstract class Page {
         manager.getDriver().get(URL);
     }
 
-    public void setWait(){
+    protected void setWait(){
         if(wait==null){
             wait = new WebDriverWait(manager.getDriver(), Duration.ofSeconds(universalWaitTimeInSeconds));
         }

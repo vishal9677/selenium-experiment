@@ -6,6 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.vishal.model.Item;
 import org.vishal.model.SortOption;
 import org.vishal.utils.seleniumUtils.WindowHandler;
 import java.util.List;
@@ -24,11 +25,11 @@ public class HomePage extends Page {
     private WebElement aboutItem;
     private String brandXpath = "//span[text()='Brands']//parent::div//following-sibling::ul//descendant::*[text()='%s']";
     private String sortOptionXpath = "//a[text()='%s']";
-    @FindBy(className = "a-dropdown-container")
+    @FindBy(xpath = "//*[@aria-label='Sort by:']//*[text()='Sort by:']")
     private WebElement sortingDropdown;
 
     @FindBy(xpath = "//*[text()=' About this item ']//following-sibling::ul//child::li")
-    List<WebElement> infoAboutItem;
+    private List<WebElement> infoAboutItem;
     private String result = "//*[@data-cel-widget='search_result_%d']//descendant::a[2]";
 
     @Autowired
@@ -77,8 +78,10 @@ public class HomePage extends Page {
         return true;
     }
 
-    public List<String> getInfoAboutItem(){
-        return infoAboutItem.stream().map(WebElement::getText).collect(Collectors.toList());
+    public Item getInfoAboutItem(){
+        return new Item(infoAboutItem.stream().map(WebElement::getText).collect(Collectors.toList()));
     }
+
+
 
 }

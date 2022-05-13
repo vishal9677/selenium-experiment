@@ -1,7 +1,7 @@
 package org.vishal.utils.seleniumUtils;
 
-import org.clipboardHealth.driverhandler.DriverManager;
-import org.clipboardHealth.pages.Page;
+import org.vishal.driverhandler.DriverManager;
+import org.vishal.pages.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +11,10 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.numberOfWindowsT
 public class WindowHandler {
 
     @Autowired
-    DriverManager manager;
+    private DriverManager manager;
 
     @Autowired
-    Page page;
+    private Page page;
 
     public void switchToNewTab(String originalWindow){
         var driver = manager.getDriver();

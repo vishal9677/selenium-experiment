@@ -15,10 +15,13 @@ public class FirefoxDriverManager extends DriverManager{
     @Override
     public void startBrowser() {
         if(driver==null) {
-            if(AppConfig.executionEnvironment.equalsIgnoreCase("local")){
-                driver = new FirefoxDriver(new FirefoxOptions());
-            }else{
-                driver = new RemoteWebDriver(getHostUrl(), new FirefoxOptions());
+            switch(AppConfig.executionEnvironment){
+                case "local":
+                    driver = new FirefoxDriver(new FirefoxOptions());
+                    break;
+                case "grid":
+                    driver = new RemoteWebDriver(getHostUrl(), new FirefoxOptions());
+                    break;
             }
         }
     }

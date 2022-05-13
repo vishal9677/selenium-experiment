@@ -6,11 +6,20 @@ import org.springframework.context.annotation.PropertySource;
 import java.util.Optional;
 
 @Configuration
-@ComponentScan("org.clipboardHealth")
+@ComponentScan("org.vishal")
 @PropertySource("classpath:App.properties")
 public class AppConfig {
-    public static String executionEnvironment = Optional.of(System.getenv("TEST_EXEC_ENV")).orElseThrow(()->
-            new NullPointerException("TEST_EXEC_ENV should be set as environment variable"));
-    public static String hostUrl = "http://"+Optional.of(System.getenv("HUB_HOST"))
-            .orElseThrow(()-> new NullPointerException("HOST_URL should be set as an environment variable"))+":4444/wd/hub";
+    public static String executionEnvironment = Optional.ofNullable(System.getenv("TEST_EXEC_ENV")).orElse("local");
+
+    public static String hostUrl;
+
+    static  {
+        if(executionEnvironment.equals("grid")){
+            var HUB_HOST = Optional.ofNullable(System.getenv("HUB_HOST"))
+                    .orElseThrow(()-> new NullPointerException("HUB_HOST should be set as an environment variable"));
+            var HUB_PORT  =  Optional.ofNullable(System.getenv("HUB_PORT")).orElse("4444");
+            hostUrl= String.format("http://%s:%s/wd/hub", HUB_HOST, HUB_PORT);
+        }
+    }
+
 }

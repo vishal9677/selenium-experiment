@@ -14,10 +14,13 @@ public class ChromeDriverManager extends DriverManager{
     @Override
     public void startBrowser() {
         if(driver==null) {
-            if(AppConfig.executionEnvironment.equalsIgnoreCase("local")){
-                driver = new ChromeDriver(getChromeOptions());
-            }else{
-                driver = new RemoteWebDriver(getHostUrl(), getChromeOptions());
+            switch(AppConfig.executionEnvironment){
+                case "local":
+                    driver = new ChromeDriver(getChromeOptions());
+                    break;
+                case "grid":
+                    driver = new RemoteWebDriver(getHostUrl(), getChromeOptions());
+                    break;
             }
         }
     }
